@@ -10,12 +10,15 @@ m(disFilter>Bot.rho_Max ,:)=[];% remove the points that frther than Rmax
 
 
 
-mu     =Centre;
+
 sig    = alg.SmallSig;
-eps    = 0;
-SIGMA = [sig^2, eps , eps;
-    eps, sig^2, eps;
-    eps, eps  , sig^2];
+
+% Older method
+% eps    = 0;
+% mu     =Centre;
+% SIGMA = [sig^2, eps , eps;
+%     eps, sig^2, eps;
+%     eps, eps  , sig^2];
 
 options = optimoptions('fminunc');
 options.MaxFunctionEvaluations=800;
@@ -38,15 +41,18 @@ options.Display='off';
         d_mat  = sqrt ( (xx_q-xx_m).^2 + (yy_q-yy_m).^2);
         d_vector = min(d_mat);
         d_vector (d_vector>alg.rho_Search)=[]; % Remove the samples that have very far neighbour
-        LIDAR   = sqrt(sum(d_vector.^2)/numel(d_vector));
+        f1   = sqrt(sum(d_vector.^2)/numel(d_vector));
         
-        
-        w  =  mvnpdf(P_pose,mu,SIGMA); % The wieght is the pdf value of the point
-        w0 =  mvnpdf(mu,mu,SIGMA);    % The wieght of the highest point
-        w=w/w0;
-        %w  = 1-w/w0; % Normalize the weight
-        
-        Objt = LIDAR * 1/w;
+        % New method 20190401
+        angleDist = abs(exp(1i*P_pose(3))-exp(1i*Centre(3)));
+        f2 = exp(((P_pose(1)-Centre(1))^2 + (P_pose(2)-Centre(2))^2 + angleDist^2)/sig^2);
+        Objt = f1 * f2;
+         
+        % Older method
+        %w  =  mvnpdf(P_pose,mu,SIGMA); % The wieght is the pdf value of the point
+        %w0 =  mvnpdf(mu,mu,SIGMA);    % The wieght of the highest point
+        %w=w/w0;
+        %Objt = LIDAR * 1/w;
     end
 
 %%
