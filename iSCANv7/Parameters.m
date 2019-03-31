@@ -11,13 +11,9 @@ Bot.rho_Max = 8; % Maximum range of the LIDAR
 Bot.L                  = 0.207; % Inter-wheel distance
 Bot.C                  = 0.035;  % Lidar offset
 Bot.RotateFactor       = 2*pi / (2* 1/Bot.DistFactor/100 / Bot.L);
-Bot.JoyTh = 0.3; % joystock dead zone
-Bot.JoyVelMax = 3000; % velocity sensitivity
-Bot.JoyDistMax = 2000; % Distance sensitivity
 
-Bot.alpha = 0.005;  % Linear error of wheels step
-%Bot.Beta  = 10;  % Fixed error of wheels step
-Bot.Beta  = 5;  % Fixed error of wheels step
+Bot.alpha = 0.02;  % Linear error of wheels step
+Bot.Beta  = 10;  % Fixed error of wheels step
 Bot.rho   = 0.005;   % Correlation coeffeceint between the two wheels
 
 %% Algorithm Paramters
@@ -27,10 +23,15 @@ alg.Y = [-5,15]; % Y is the center of the cell
 alg.Saturation = [0.1,0.9]; % map saturation probabilites for unocc, occ cases.
 alg.rho_Search = 0.35; % this is the maximum distance to seek neighbout point
 alg.Part = 1; % number of particels parallel streams
-alg.MapRes = 12; % number of points per meter
+alg.MapRes = 8; % number of points per meter
 
 alg.rho_Local = Bot.rho_Max; % Local Map raduis
-alg.ReSampleTH=0.80; %Resampling threshold
-alg.SmallSig = 0.15; % this is the std of the search area for laser matching (Anchoring)
+alg.ReSampleTH=0.65; %Resampling threshold
+alg.SmallSig = 0.25; % this is the std of the search area for laser matching (Anchoring)
 alg.Occ      = [0.3 0.7]; % This is the updating paramters when haing a LIDAr meas;
 
+if alg.Part==1 % This is when no particle filters are requested, the motion model is determinstic
+    Bot.alpha = 1e-6;  % Linear error of wheels step
+    Bot.Beta  = 1e-6;  % Fixed error of wheels step
+    Bot.rho   = 1e-6;   % Correlation coeffeceint between the two wheels
+end
