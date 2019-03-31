@@ -11,8 +11,9 @@ The file “A01_MapperBot_Mouse.m” will allow you to control MapperBot using a
 
 # iSCAN Algorithm
 For details please read the full paper describing the algorithm and the robot’s function.  
-The project indludes three sample LIDAR row data collected using MapperBot. To run the demo: **\iSCAN\main.m**  
+The project indludes three sample LIDAR row data collected using MapperBot, to run the demo: **\iSCAN\main.m**  
+You can try the different measurements by uncommenting the relevant file inside: \iSCAN\main.m  
 You can change the algorithm parameters under in the file: \iSCAN\Parameters.m
 
-The project is developped by Dr Akram Al-Hourani (2019)  
-Codition of use: please cite the paper
+The project is developed by Dr Akram Al-Hourani (2019)  
+Condition of use: please cite the paper
