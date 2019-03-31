@@ -2,7 +2,9 @@
 SLAM Robot and Algorithm based on Matlab and Arduino
 
 Robot name: MapperBot  
-Algorithm name: iSCAN
+Algorithm name: iSCAN  
+
+Video link to the robot: https://www.youtube.com/watch?v=dXMMgDs58lA
 
 # iSCAN Algorithm
 For details please read the full paper describing the algorithm and the robot’s function.  
