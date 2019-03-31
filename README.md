@@ -1,4 +1,5 @@
-# MapperBot / iSCAN: SLAM Robot and Algorithm based on Matlab and Arduino
+# MapperBot / iSCAN: 
+# SLAM Robot and Algorithm based on Matlab and Arduino
 
 
 For details please read the full paper describing the  algorithm and the robot’s function.
