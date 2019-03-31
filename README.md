@@ -1,15 +1,12 @@
 # MapperBot / iSCAN: 
 SLAM Robot and Algorithm based on Matlab and Arduino
 
-Robot name: MapperBot
-
+Robot name: MapperBot  
 Algorithm name: iSCAN
 
 # MapperBot
-The source files for the Arduino are inside the folder \ArduinoSourceCode
-
+The source files for the Arduino are inside the folder \ArduinoSourceCode  
 Hardware layout and photo inside the folder \HardwareDesign
-
 The file “A01_MapperBot_Mouse.m” will allow you to control MapperBot using a mouse from Matlab environment.
 
 # iSCAN Algorithm
