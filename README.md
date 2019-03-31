@@ -8,9 +8,7 @@ The source files for the Arduino are inside the folder \ArduinoSourceCode
 For details please read the full paper describing the  algorithm and the robot’s function.
 
 Robot name: MapperBot
-
 Algorithm name: iSCAN
-
 The project indludes three sample LIDAR row data collected using MapperBot.
 To run the demo: \iSCAN\main.m 
 You can change the algorithm parameter under in the file “\iSCAN\Parameters.m”
