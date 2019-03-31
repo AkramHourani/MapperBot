@@ -8,6 +8,8 @@ Algorithm name: iSCAN
 # MapperBot
 The source files for the Arduino are inside the folder \ArduinoSourceCode
 
+Hardware layout and photo inside the folder \HardwareDesign
+
 # iSCAN
 For details please read the full paper describing the  algorithm and the robot’s function.
 
