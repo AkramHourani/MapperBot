@@ -13,3 +13,6 @@ The file “A01_MapperBot_Mouse.m” will allow you to control MapperBot using a
 
 # MapperBot
 The source files for the Arduino are inside the folder \ArduinoSourceCode
+
+The project is developped by Akram Al-Hourani
+Codition of use: please cite the paper
