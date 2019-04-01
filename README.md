@@ -18,5 +18,5 @@ Hardware layout and photo inside the folder: \HardwareDesign
 The file: \Robot Control\A01_MapperBot_Mouse.m will allow you to control MapperBot using a mouse from Matlab environment.
 
 
-The project is developed by Dr Akram Al-Hourani (2019)  
+The project is created/developed by Dr Akram Al-Hourani (2019)  
 Condition of use: please cite the paper
