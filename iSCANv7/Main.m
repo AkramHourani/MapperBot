@@ -114,17 +114,6 @@ for RUN=2:length(R_data)
         ParticleEstPose{RUN}(k,:) = OldParticleEstPoses(NewGen(k),:);
         OldParticleEstMaps{k} =OldParticleEstMaps{NewGen(k)};
     end
-    
-% Old code
-    
-%     %replace week particles
-%     for k=1:alg.Part
-%         if ( Score(RUN,k)/MaxScore <alg.ReSampleTH)
-%             ParticleEstPose{RUN}(k,:)= ParticleEstPose{RUN}(MaxIDX,:); % replace the particle
-%             ParticleMap{k} = ParticleMap{MaxIDX}; % replace the map
-%             fprintf('Resampling... particle %d replaced with %d \n',k,MaxIDX);
-%         end
-%     end
 
     Step_Time = toc(timeval2);
     Simulation_Progress(RUN,:) = [Step_Time,N_eff];
