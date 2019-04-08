@@ -22,7 +22,7 @@ alg.X = [-5,10]; % X is the center of the cell
 alg.Y = [-5,15]; % Y is the center of the cell
 alg.Saturation = [0.1,0.9]; % map saturation probabilites for unocc, occ cases.
 alg.rho_Search = 0.35; % this is the maximum distance to seek neighbout point
-alg.Part = 1; % number of particels parallel streams
+alg.Part = 4; % number of particels parallel streams
 alg.MapRes = 8; % number of points per meter
 
 alg.rho_Local = Bot.rho_Max; % Local Map raduis

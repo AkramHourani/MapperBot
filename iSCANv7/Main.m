@@ -6,16 +6,16 @@
 % For academic use, plese cite the asciated article
 %% Itialization
 clc
-clear global
+clear global 
 %% Add pathes
 addpath('..\Measurements')
 addpath('MapUpdate')
 addpath('Functions')
 
 %% Select here the file name to process
-InputFile = 'Data1_OfficesType1';
+%InputFile = 'Data1_OfficesType1';
 %InputFile = 'Data2_OfficesType2';
-%InputFile = 'Data3_House';
+InputFile = 'Data3_House';
 
 %% Loading the file and cleaing some
 load(InputFile);
@@ -94,18 +94,38 @@ for RUN=2:length(R_data)
         [Score(RUN,Particle)]=w;
     end
     %% Perform sampling importance resampling
+    % This section updated 20190408
     Score(RUN,:)=Score(RUN,:) /sum(Score(RUN,:));%normalizing score
     [MaxScore,MaxIDX]= max( Score(RUN,:));
     display(Score(RUN,:)/MaxScore); % make the score realtive to the maximum (this step is nor really nessasry, but make the visualization of the weights easier)
     N_eff     = 1/sum(Score(RUN,:).^2);
-    %replace week particles
+    NewGen =  sum(rand(4,1)>=cumsum(Score(RUN,:)),2)+1; % These are the new generation particles
+    
+    fprintf('New generation particles: ');
+    disp(NewGen')
+    %Copy particles temporarly
     for k=1:alg.Part
-        if ( Score(RUN,k)/MaxScore <alg.ReSampleTH)
-            ParticleEstPose{RUN}(k,:)= ParticleEstPose{RUN}(MaxIDX,:); % replace the particle
-            ParticleMap{k} = ParticleMap{MaxIDX}; % replace the map
-            fprintf('Resampling... particle %d replaced with %d \n',k,MaxIDX);
-        end
+        OldParticleEstPoses(k,:)= ParticleEstPose{RUN}(k,:); % copy the poses
+        OldParticleEstMaps{k} = ParticleMap{k}; % replace the map
     end
+    
+    % assign new particles
+    for k=1:alg.Part
+        ParticleEstPose{RUN}(k,:) = OldParticleEstPoses(NewGen(k),:);
+        OldParticleEstMaps{k} =OldParticleEstMaps{NewGen(k)};
+    end
+    
+% Old code
+    
+%     %replace week particles
+%     for k=1:alg.Part
+%         if ( Score(RUN,k)/MaxScore <alg.ReSampleTH)
+%             ParticleEstPose{RUN}(k,:)= ParticleEstPose{RUN}(MaxIDX,:); % replace the particle
+%             ParticleMap{k} = ParticleMap{MaxIDX}; % replace the map
+%             fprintf('Resampling... particle %d replaced with %d \n',k,MaxIDX);
+%         end
+%     end
+
     Step_Time = toc(timeval2);
     Simulation_Progress(RUN,:) = [Step_Time,N_eff];
     fprintf('N_eff = %0.2f\n',N_eff);
