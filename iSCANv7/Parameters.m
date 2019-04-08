@@ -26,7 +26,6 @@ alg.Part = 4; % number of particels parallel streams
 alg.MapRes = 8; % number of points per meter
 
 alg.rho_Local = Bot.rho_Max; % Local Map raduis
-alg.ReSampleTH=0.65; %Resampling threshold
 alg.SmallSig = 0.25; % this is the std of the search area for laser matching (Anchoring)
 alg.Occ      = [0.3 0.7]; % This is the updating paramters when haing a LIDAr meas;
 
