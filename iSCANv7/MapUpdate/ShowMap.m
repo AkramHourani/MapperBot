@@ -6,7 +6,7 @@ Factor=10;
 ax=gca;
 xlimts= MainMap.GridLocationInWorld(1)+[0,MainMap.Dim(1)];
 ylimts=MainMap.GridLocationInWorld(2)+[0,MainMap.Dim(2)];
-p = exp(double(MainMap.Map)/Factor) ./ (1+exp(double(MainMap.Map)/Factor));
+p = real(exp(double(MainMap.Map)/Factor) ./ (1+exp(double(MainMap.Map)/Factor)));
 imagesc(xlimts,fliplr(ylimts),imcomplement(p),MainMap.Saturation);
 colormap(gray)
  
