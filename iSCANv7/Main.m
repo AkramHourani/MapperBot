@@ -13,14 +13,16 @@ addpath('MapUpdate')
 addpath('Functions')
 
 %% Select here the file name to process
-%InputFile = 'Data1_OfficesType1';
-%InputFile = 'Data2_OfficesType2';
-InputFile = 'Data3_House';
 
+InputFile{1} = 'Data1_OfficesType1';
+InputFile{2} = 'Data2_OfficesType2';
+InputFile{3} = 'Data3_House';
+
+for Scenario=1:3
 %% Loading the file and cleaing some
-load(InputFile);
+load(InputFile{Scenario});
 close all
-clearvars -except Pose_data R_data Phi_data Bot alg  Odo_data InputFile x_0
+clearvars -except Pose_data R_data Phi_data Bot alg  Odo_data InputFile x_0 Scenario
 %% Load the Parameters
 % You can set the SLAM paramters in the Paramters.m file
 Parameters
@@ -99,7 +101,7 @@ for RUN=2:length(R_data)
     [MaxScore,MaxIDX]= max( Score(RUN,:));
     display(Score(RUN,:)/MaxScore); % make the score realtive to the maximum (this step is nor really nessasry, but make the visualization of the weights easier)
     N_eff     = 1/sum(Score(RUN,:).^2);
-    NewGen =  sum(rand(4,1)>=cumsum(Score(RUN,:)),2)+1; % These are the new generation particles
+    NewGen =  sum(rand(alg.Part,1)>=cumsum(Score(RUN,:)),2)+1; % These are the new generation particles
     
     fprintf('New generation particles: ');
     disp(NewGen')
@@ -163,9 +165,9 @@ for RUN=2:length(R_data)
     
 end
 %% This will save the output file for later plotting
-FileNameMatlab=[InputFile,'_V7'];
+FileNameMatlab=[InputFile{Scenario},'_V7'];
 save(FileNameMatlab);
-
+end
 %% Functions
 function PlotSLAM(h_fig,MainMap,Pose_est, ax)
 %global
