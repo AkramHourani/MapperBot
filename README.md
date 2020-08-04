@@ -6,6 +6,9 @@ Algorithm name: iSCAN
 
 Video link to the robot: https://www.youtube.com/watch?v=dXMMgDs58lA
 
+For detailed infromaiton about the SLAM algorithms based on particel filter:
+Al-Hourani, A., Ristic, B. MapperBot/iSCAN: open-source integrated robotic platform and algorithm for 2D mapping. Int J Intell Robot Appl 4, 44–56 (2020). https://doi.org/10.1007/s41315-020-00118-3
+
 # iSCAN Algorithm
 For details please read the full paper describing the algorithm and the robot’s function.  
 The project indludes three sample LIDAR row data collected using MapperBot, to run the demo: **\iSCAN\main.m**  
